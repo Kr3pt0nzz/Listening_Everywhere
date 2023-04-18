@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "578522413585",
+    "project_id": "listening-everywhere",
+    "storage_bucket": "listening-everywhere.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578522413585:android:9a7005dbb41c81d3b24fb0",
+        "android_client_info": {
+          "package_name": "com.example.listeningeverywhere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578522413585-sidr7oplofi51v9tn39l0qcj1kcfnj1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWVJtUjB5k5eN5-LXZYkIFMKLuYv4YuSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578522413585-sidr7oplofi51v9tn39l0qcj1kcfnj1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
