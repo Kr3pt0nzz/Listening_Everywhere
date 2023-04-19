@@ -12,8 +12,10 @@ import com.example.listeningeverywhere.exoplayer.isPlaying
 import com.example.listeningeverywhere.exoplayer.isPrepared
 import com.example.listeningeverywhere.other.Constants.MEDIA_ROOT_ID
 import com.example.listeningeverywhere.other.Resource
+import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
+@HiltViewModel
 class MainViewModel @Inject constructor(
     private val musicServiceConnection: MusicServiceConnection
 ) : ViewModel() {
