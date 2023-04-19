@@ -3,6 +3,7 @@ package com.example.listeningeverywhere.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -48,9 +49,9 @@ class SongAdapter @Inject constructor(
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = songs[position]
         holder.itemView.apply {
-            R.id.tvPrimary.text = song.title
-            tvSecondary.text = song.subtitle
-            glide.load(song.imageUrl).into(ivItemImage)
+            findViewById<TextView>(R.id.tvPrimary).text=song.title
+            findViewById<TextView>(R.id.tvSecondary).text=song.subtitle
+            glide.load(song.imageUrl).into(findViewById(R.id.ivItemImage))
 
             setOnClickListener {
                 onItemClickListener?.let { click ->
