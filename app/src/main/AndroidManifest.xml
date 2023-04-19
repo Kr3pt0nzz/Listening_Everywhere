@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ListeningEverywhere"
         tools:targetApi="31">
+        <service android:name=".exoplayer.MusicService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.media.browser.MediaBrowserService"/>
+            </intent-filter>
+        </service>
         <activity
             android:name=".ui.viewmodels.MainActivity"
             android:exported="true">
