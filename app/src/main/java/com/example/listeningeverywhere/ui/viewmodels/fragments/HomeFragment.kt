@@ -6,11 +6,10 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listeningeverywhere.R
-import com.example.listeningeverywhere.adapters.SongAdapter
+import com.example.listeningeverywhere.adapters.SwipeSongAdapter
 import com.example.listeningeverywhere.other.Status
 import com.example.listeningeverywhere.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,14 +20,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val mainViewModel: MainViewModel by viewModels()
 
     @Inject
-    lateinit var songAdapter: SongAdapter
+    lateinit var songAdapter: SwipeSongAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         subscribeToObservers()
 
-        songAdapter.setOnItemClickListener {
+        songAdapter.setItemClickListener {
             mainViewModel.playOrToggleSong(it)
         }
     }
