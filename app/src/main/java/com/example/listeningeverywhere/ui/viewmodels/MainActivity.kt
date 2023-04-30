@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        subscribeToObservers()
 
         ivCurSongImage = findViewById<ImageView>(R.id.ivCurSongImage).apply {
             isVisible = false
@@ -90,6 +89,8 @@ class MainActivity : AppCompatActivity() {
             }
             toggleBottomBar(isVisible)
         }
+
+        subscribeToObservers()
     }
 
     private fun toggleBottomBar(isVisible: Boolean) {

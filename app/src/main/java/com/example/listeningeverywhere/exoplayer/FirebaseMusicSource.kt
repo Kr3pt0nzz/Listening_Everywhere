@@ -45,7 +45,6 @@ class FirebaseMusicSource @Inject constructor(
         val concatenatingMediaSource = ConcatenatingMediaSource()
         songs.forEach { song ->
             val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
-
                 .createMediaSource(com.google.android.exoplayer2.MediaItem.fromUri(song.getString(METADATA_KEY_MEDIA_URI)))
             concatenatingMediaSource.addMediaSource(mediaSource)
         }
@@ -80,13 +79,12 @@ class FirebaseMusicSource @Inject constructor(
         }
 
     fun whenReady(action: (Boolean) -> Unit): Boolean {
-        if (state == STATE_CREATED || state == STATE_INITIALIZING) {
+        return if (state == STATE_CREATED || state == STATE_INITIALIZING) {
             onReadyListeners += action
-            return false
+            false
         } else {
             action(state == STATE_INITIALIZED)
-            return true
-
+            true
         }
     }
 
@@ -98,5 +96,4 @@ enum class State {
     STATE_INITIALIZING,
     STATE_INITIALIZED,
     STATE_ERROR
-
 }

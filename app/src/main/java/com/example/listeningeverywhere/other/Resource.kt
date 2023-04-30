@@ -1,7 +1,6 @@
 package com.example.listeningeverywhere.other
 
 data class Resource<out T>(val status: Status, val data: T?, val message: String?) {
-
     companion object {
         fun <T> success(data: T?) = Resource(Status.SUCCESS, data, null)
 

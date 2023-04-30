@@ -1,7 +1,6 @@
 package com.example.listeningeverywhere.other
 
-open class Event <out T>(private val data: T) {
-
+class Event <out T>(private val data: T) {
     var hasBeenHandled = false
     private set
 

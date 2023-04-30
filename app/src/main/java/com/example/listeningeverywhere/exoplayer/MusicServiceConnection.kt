@@ -47,19 +47,20 @@ class MusicServiceConnection(
     val transportControls: MediaControllerCompat.TransportControls
         get() = mediaController.transportControls
 
-    fun subscribe(parentId: String, callback: MediaBrowserCompat.SubscriptionCallback){
-        mediaBrowser.subscribe(parentId,callback)
+    fun subscribe(parentId: String, callback: MediaBrowserCompat.SubscriptionCallback) {
+        mediaBrowser.subscribe(parentId, callback)
     }
-    fun unsubscribe(parentId: String, callback: MediaBrowserCompat.SubscriptionCallback){
-        mediaBrowser.unsubscribe(parentId,callback)
+
+    fun unsubscribe(parentId: String, callback: MediaBrowserCompat.SubscriptionCallback) {
+        mediaBrowser.unsubscribe(parentId, callback)
     }
 
     private inner class MediaBrowserConnectionCallback(
         private val context: Context
-    ) : MediaBrowserCompat.ConnectionCallback(){
+    ) : MediaBrowserCompat.ConnectionCallback() {
         override fun onConnected() {
             mediaController = MediaControllerCompat(context, mediaBrowser.sessionToken).apply {
-               registerCallback(MediaControllerCallback())
+                registerCallback(MediaControllerCallback())
             }
             _isConnected.postValue(Event(Resource.success(true)))
         }
@@ -69,10 +70,13 @@ class MusicServiceConnection(
         }
 
         override fun onConnectionFailed() {
-            _isConnected.postValue(Event(Resource.error(
-                "Couldn't connect to media browser", false
-            )
-            )
+            _isConnected.postValue(
+                Event(
+                    Resource.error(
+                        "Couldn't connect to media browser",
+                        false
+                    )
+                )
             )
         }
     }

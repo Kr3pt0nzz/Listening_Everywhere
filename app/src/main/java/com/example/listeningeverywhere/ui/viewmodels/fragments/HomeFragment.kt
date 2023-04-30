@@ -6,13 +6,13 @@ import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listeningeverywhere.R
 import com.example.listeningeverywhere.adapters.SwipeSongAdapter
 import com.example.listeningeverywhere.other.Status
 import com.example.listeningeverywhere.ui.viewmodels.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -24,22 +24,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView()
+
+        requireView().findViewById<RecyclerView>(R.id.rvAllSongs).apply {
+            adapter = songAdapter
+        }
+
         subscribeToObservers()
 
         songAdapter.setItemClickListener {
             mainViewModel.playOrToggleSong(it)
         }
-    }
 
-    private fun setupRecyclerView() =
-        requireView().findViewById<RecyclerView>(R.id.rvAllSongs).apply {
-            adapter = songAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+        Timber.d("onViewCreated")
+    }
 
     private fun subscribeToObservers() {
         mainViewModel.mediaItems.observe(viewLifecycleOwner) { result ->
+            Timber.d(result.toString())
             when (result.status) {
                 Status.SUCCESS -> {
                     requireView().findViewById<ProgressBar>(R.id.allSongsProgressBar).isVisible =
