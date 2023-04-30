@@ -13,8 +13,8 @@ import com.example.listeningeverywhere.exoplayer.callbacks.MusicPlayerEventListe
 import com.example.listeningeverywhere.exoplayer.callbacks.MusicPlayerNotificationListener
 import com.example.listeningeverywhere.other.Constants.MEDIA_ROOT_ID
 import com.example.listeningeverywhere.other.Constants.NETWORK_ERROR
+import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.mediasession.TimelineQueueNavigator
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
@@ -33,7 +33,7 @@ class MusicService : MediaBrowserServiceCompat() {
 
 
     @Inject
-    lateinit var exoPlayer: SimpleExoPlayer
+    lateinit var exoPlayer: ExoPlayer
 
     @Inject
     lateinit var firebaseMusicSource: FirebaseMusicSource
@@ -65,7 +65,7 @@ class MusicService : MediaBrowserServiceCompat() {
             firebaseMusicSource.fetchMediaData()
         }
         val activityIntent = packageManager?.getLaunchIntentForPackage(packageName)?.let {
-            PendingIntent.getActivity(this, 0, it, 0)
+            PendingIntent.getActivity(this, 0, it, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
         mediaSession = MediaSessionCompat(this, SERVICE_TAG).apply {
